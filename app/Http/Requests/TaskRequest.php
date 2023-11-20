@@ -28,4 +28,19 @@ class TaskRequest extends FormRequest
             'description' => 'required'
         ];
     }
+
+
+    /**
+     * Get the validation rules message that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'required'   => 'Bidang ini wajib di isi',
+            'min'        => 'Jumlah karakter terlalu pendek',
+            'max'        => 'Jumlah karakter sudah mencapai batas'
+        ];
+    }
 }
