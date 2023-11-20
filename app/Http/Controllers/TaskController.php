@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
 use App\Models\Task;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
+use DateTime;
 
 class TaskController extends Controller
 {
@@ -50,13 +50,8 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-
-        $request->validate([
-            'title' => 'required|max:120|min:3',
-            'description' => 'required'
-        ]);
 
         Task::create([
             'title'       => $request->title,
@@ -110,9 +105,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
-
         Task::find($id)->update([
             'title'       => $request->title,
             'description' => $request->description,
