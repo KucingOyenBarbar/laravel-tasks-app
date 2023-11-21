@@ -19,9 +19,8 @@ Route::get('/', HomeController::class);
 
 Route::redirect('/', 'tasks');
 
-
 // Task Route Group
-Route::middleware('auth')->prefix('tasks')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('tasks')->group(function () {
     Route::get('/', [App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
     Route::post('/', [App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
     Route::get('/create', [App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
