@@ -3,8 +3,25 @@
 @section('content')
     <div class="container py-5">
 
-        <div class="row justify-content-center g-2">
-            <div class="col-lg-7">
+        <div class="row justify-content-start g-2">
+            <div class="col">
+                <h1 class="text-start text-dark  text-capitalize fw-normal fs-3 px-0 mx-0">
+                    Welcome Back ,{{ $user->name }}
+                </h1>
+                <p class="text-start text-dark ">Create and record your activities</p>
+                <div>
+                    <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        href="{{ route('logout') }}" class="btn btn-danger btn-sm rounded" aria-label="Add New Tasks">Logout
+                    </a>
+                    <form action="{{ route('logout') }}" id="logout-form" method="POST">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center g-2 py-3">
+            <div class="col">
                 <div class="card rounded">
                     <div class="card-body">
                         <h5 class="card-title">Tasks List</h5>

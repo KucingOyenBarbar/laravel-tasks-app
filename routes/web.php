@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class]);
+Route::get('/', HomeController::class);
 
-Route::redirect('/', 'tasks'); // Redirect Page To Task (302)
+Route::redirect('/', 'tasks');
+
 
 // Task Route Group
-Route::middleware('guest')->prefix('tasks')->group(function () {
+Route::middleware('auth')->prefix('tasks')->group(function () {
     Route::get('/', [App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
     Route::post('/', [App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
     Route::get('/create', [App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');

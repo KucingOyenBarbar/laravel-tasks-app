@@ -6,6 +6,7 @@ use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -20,6 +21,7 @@ class TaskController extends Controller
         $data = [
             'page_title' => 'Task Management',
             'tasks' => Task::latest()->paginate(10),
+            'user'  => Auth::user()
         ];
 
         if (isset($request->search)) {
